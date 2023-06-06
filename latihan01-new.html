@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input data</title>
+</head>
+<body>
+    
+    <form>
+        <div>
+            Nama Lengkap :
+            <input type="text" id="txNAMA">
+        </div>
+        <div>
+            Email :
+            <input type="email" id="txEMAIL">
+        </div>
+        <div>
+            User Name :
+            <input type="user name" id="txUSERNAME">
+        </div>
+        <div>
+            password :
+            <input type="password" id="pass1">
+        </div>
+        <div>
+            verivikasi password :
+            <input type="verivikasi password" id="pass2">
+        </div>
+        <div>
+            <button type="button" onclick="storeData"></button>
+        </div>
+        
+    </form>
+
+    <script>
+        function storeData(){
+            let nm = document.getElementById("txNAMA").value;
+            let ema = document.getElementById("txEMAIL").value;
+            let usr = document.getElementById("txUSERNAME").value;
+            let p1 = document.getElementById("pass1").value;
+            let p2 = document.getElementById("pass1").value;
+            let params = "nama="+nm+"&email="+ema+"&username="+usr+"&pass1="+p1+"&pass2="+p2+"&iduser="+iduser;
+            console.log(params);
+            let cx = "https://webpro.ptov.my.id/api/curduser.php?aksi=get&q=update";
+            
+
+            const jsHTTP = new XMLHttpRequest();
+            jsHTTP.open("POST",cx,true);
+            jsHTTP.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            jsHTTP.send(params);
+
+            jsHTTP.onload = function(){
+                const dta = JSON.parse(this.responseText);
+                if(dta.error==0){
+                    const myTimeout = setTimeout(window.location.replace="latihan01.html",5000);
+                }
+               
+            }
+                
+        }
+    </script>
+
+</body>
+</html>
